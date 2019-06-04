@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block body %}
+    <h1>ASCII ART에 오신 것을 환영합니다. 'ㅇ'</h1>
+    <form action="/result/" method="GET">
+        영단어를 입력하세요: <input type="text" name="word">
+        <input type="submit" value="Submit">
+    </form>
+{% endblock %}
