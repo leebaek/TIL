@@ -1,0 +1,12 @@
+{% extends 'boards/base.html' %}
+
+{% block body %}
+    <h1 class="text-center">INDEX</h1>
+    <hr>
+    {% for board in boards %}
+        <p>number : {{ board.pk }}</p>
+        <p>title : {{ board.title }}</p>
+        <a href="/boards/{{ board.pk }}/">[more]</a><br>
+    {% endfor %}
+    <a href="/boards/new/">[NEW]</a>
+{% endblock %}
