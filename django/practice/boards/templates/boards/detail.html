@@ -1,0 +1,29 @@
+{% extends 'boards/base.html' %}
+
+{% block body %}
+<h1 class="text-center">상세보기</h1>
+<hr>
+<h3>{{ board.pk }}번 글</h3><br>
+<h5>제목: {{ board.title }}</h5><br>
+<h5>내용: {{ board.content }}</h5><br>
+<p>생성시간: {{ board.created_at }}</p>
+<p>수정시간: {{ board.updated_at }}</p>
+
+<a href="{% url 'boards:index' %}">[목록]</a>
+<a href="{% url 'boards:edit' board.pk %}">[수정]</a>
+<form action="{% url 'boards:delete' board.pk %}" method="POST">
+    {% csrf_token %}
+    <input type="submit" value="삭제">
+</form>
+<hr>
+<form action="" method="POST">
+    {% csrf_token %}
+    <textarea name="comment" id="comment" cols="80" rows="5"></textarea>
+    <input type="submit" value="등록">
+</form>
+<hr>
+{% for comment in comments %}
+    <p>내용: {{ comment.content }}</p>
+    <p>등록시간: {{ comment.created_at }}</p>
+{% endfor %}
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends 'boards/base.html' %}
+
+{% block body %}
+<h1 class="text-center">{{ board.pk }}번 글 수정</h1>
+<form action="" method="POST">
+    {% csrf_token %}
+    <h5>제목</h5>
+    <input type="text" name="title" id="title" value="{{ board.title }}">
+    <h5>내용</h5>
+    <textarea name="content" id="content" cols="30" rows="10">{{ board.content }}</textarea><br>
+    <input type="submit" value="등록">
+    <a href="{% url 'boards:index' %}">[취소]</a>
+</form>
+{% endblock %}

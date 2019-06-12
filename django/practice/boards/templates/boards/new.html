@@ -1,0 +1,15 @@
+{% extends 'boards/base.html' %}
+
+{% block body %}
+<form action="{% url 'boards:new' %}" method="POST">
+    {% csrf_token%}
+    <h1 class="text-center">새 글</h1>
+    <hr>
+    <h5>제목</h5>
+    <input type="text" name="title" id="title">
+    <h5>내용</h5>
+    <textarea name="content" id="content" cols="30" rows="10"></textarea><br>
+    <input type="submit" value="등록">
+    <a href="{% url 'boards:index' %}">[취소]</a>
+</form>
+{% endblock %}

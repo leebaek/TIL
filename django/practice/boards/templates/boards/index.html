@@ -1,0 +1,15 @@
+{% extends 'boards/base.html' %}
+
+{% block body %}
+<h1 class="text-center"><b>게시판</b></h1>
+<hr>
+<h4 class="text-center">목록</h4><br>
+{% for board in boards %}
+    <p>번호 : {{ board.id }}</p>
+    <p>제목 : {{ board.title }}</p>
+    <a href="{% url 'boards:detail' board.pk %}">[상세보기]</a>
+<hr>
+{% endfor %}
+
+<a href="{% url 'boards:new' %}">[새 글]</a>
+{% endblock %}
