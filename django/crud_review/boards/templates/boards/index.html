@@ -1,7 +1,8 @@
 {% extends 'boards/base.html' %}
-
+{% load static %} <!-- 이미지가 어디에 위치해 있는지 알려주는 태그 -->
 {% block body %}
-<h1 class="text-center">Boards</h1>
+<h1 class="text-center">BAEK</h1>
+<img src="{% static 'boards/images/urban.jpg' %}" alt="urban">
 <hr>
 {% for board in boards %}
     <p>글 번호: {{ board.pk }}</p>

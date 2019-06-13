@@ -3,12 +3,14 @@
 {% block body %}
 <h1 class="text-center">NEW</h1>
 <hr>
-<form action="" method="POST">
+<form action="" method="POST" enctype="multipart/form-data">
     {% csrf_token %}
     <label for="title">Title</label><br>
     <input type="text" name="title" id="title"><br>
     <label for="content">Content</label><br>
     <textarea name="content" id="content" cols="30" rows="10"></textarea><br>
+    <label for="image">Image</label><br>
+    <input type="file" name="image" id="image" accept="image/*">
     <input type="submit" value="Submit">
 </form>
 <a href="{% url 'boards:index' %}">[메인 페이지]</a>

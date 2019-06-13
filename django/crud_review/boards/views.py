@@ -11,8 +11,8 @@ def new(request):
     if request.method == 'POST':
         title = request.POST.get('title')
         content = request.POST.get('content')
-
-        board = Board(title=title, content=content)  # column들의 이름 : 변수
+        image = request.FILES.get('image')
+        board = Board(title=title, content=content, image=image)  # column들의 이름 : 변수
         board.save()  # DB에 저장
 
         # return render(request, 'boards/create.html') # 글을 작성하고 제출하면 '작성완료'창으로 이동
@@ -41,6 +41,7 @@ def edit(request, board_pk):
     if request.method == 'POST':
         board.title = request.POST.get('title')
         board.content = request.POST.get('content')
+        board.image = request.FILES.get('image')
         board.save()
         return redirect('boards:detail', board.pk)
     else:

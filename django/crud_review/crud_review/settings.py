@@ -27,6 +27,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_extensions',
+    'imagekit',
 ]
 
 MIDDLEWARE = [
@@ -107,4 +108,14 @@ USE_TZ = False
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
+# 사용자가 미리 아래 경로에 이미지를 저장하고 사용함.
 STATIC_URL = '/static/'
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'crud_review', 'assets', 'images'),
+]
+
+# 자동으로 media로 이미지가 저장됨.
+MEDIA_URL = '/media/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
