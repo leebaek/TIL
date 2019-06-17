@@ -17,7 +17,7 @@ def new(request):
         board.save()
         return redirect('boards:index')
     else:
-        return render(request, 'boards/new.html')
+        return render(request, 'boards/create.html')
 
 
 def detail(request, board_pk):

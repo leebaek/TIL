@@ -1,0 +1,28 @@
+{% extends 'movies/base.html' %}
+
+{% block body %}
+<h1 class="text-center">새 영화 추가</h1>
+<hr>
+
+<form action="/movies/index/" method="POST" enctype="">
+    {% csrf_token %}
+    <label for="title">title</label><br>
+    <input type="text" id="title" name="title"><br>
+    <label for="title_origin">title_origin</label><br>
+    <input type="text" id="title_origin" name="title_origin"><br>
+    <label for="vote_count">vote_count</label><br>
+    <input type="number" name="vote_count" id="vote_count"><br>
+    <label for="open_date">open_date</label><br>
+    <input type="date" id="open_date" name="open_date"><br>
+    <label for="genre">genre</label><br>
+    <input type="text" id="genre" name="genre"><br>
+    <label for="score">score</label><br>
+    <input type="number" name="score" id="score"><br>
+    <label for="poster_url">poster_url</label><br>
+    <input type="text" name="poster_url" id="poster_url"><br>
+    <label for="description">description</label><br>
+    <textarea name="description" id="description" cols="30" rows="10"></textarea><br>
+    <input type="submit" value="추가">
+</form>
+
+{% endblock %}

@@ -18,7 +18,7 @@ def new(request):
         # return render(request, 'boards/create.html') # 글을 작성하고 제출하면 '작성완료'창으로 이동
         return redirect('boards:detail', board.pk)
     else:
-        return render(request, 'boards/new.html')
+        return render(request, 'boards/create.html')
 
 
 def detail(request, board_pk): # 글을 작성하면 그 글로

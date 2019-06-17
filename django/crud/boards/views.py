@@ -8,7 +8,7 @@ def index(request):
     return render(request, 'boards/index.html', context)
 
 def new(request):
-    return render(request, 'boards/new.html')
+    return render(request, 'boards/create.html')
 
 def create(request):
     title = request.POST.get('title')
