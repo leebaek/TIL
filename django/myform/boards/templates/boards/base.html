@@ -13,7 +13,8 @@
     <div class="container">
         {% if user.is_authenticated %}
             <h1>안녕, {{ user.username }}</h1>
-            <a href="{% url 'accounts:edit' %}"><input type="button" value="회원정보수정"></a>
+            <a href="{% url 'accounts:edit' %}"><input type="button" value="회원정보수정"></a><br>
+            <a href="{% url 'accounts:change_password' %}"><input type="button" value="비밀번호변경"></a>
             <form action="{% url 'accounts:logout' %}" method="POST">
                 {% csrf_token %}
                 <input type="submit" value="로그아웃">

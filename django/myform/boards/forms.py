@@ -1,6 +1,7 @@
 from django import forms
-from .models import Board
+from .models import Board, Comment
 
+# 게시글의 폼을 설정
 class BoardForm(forms.ModelForm):
     title = forms.CharField(
         label='제목',
@@ -22,6 +23,13 @@ class BoardForm(forms.ModelForm):
     class Meta:
         model = Board
         fields = ['title', 'content']
+
+# 댓글의 폼을 설정
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = ['content',]
+
 
 # class BoardForm(forms.Form):
 #     title = forms.CharField(

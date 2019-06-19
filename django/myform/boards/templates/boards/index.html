@@ -4,9 +4,10 @@
     <h1>INDEX</h1>
     <hr>
     {% for board in boards %}
+        <p><b>작성자: {{ board.user }}</b></p>
         <p>번호: {{ board.pk }}</p>
         <p>제목: {{ board.title }}</p>
-        <a href="{% url 'boards:detail' board.pk %}">[상세]</a>
+        <a href="{% url 'boards:detail' board.pk %}">[상세]</a><hr>
     {% endfor %}
     <hr>
     {% if user.is_authenticated %}
