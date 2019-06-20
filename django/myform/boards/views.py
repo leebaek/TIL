@@ -96,3 +96,17 @@ def comments_delete(request, board_pk, comment_pk):
         return redirect('boards:detail', board_pk)
     comment.delete()
     return redirect('boards:detail', board_pk)
+
+
+@login_required
+def like(request, board_pk):
+    board = get_object_or_404(Board, pk=board_pk)
+
+    if request.user in board.like_users.all():
+    # 게시글에 좋아요를 누른 모든 유저 중에 어떤 유저가 있다면
+        board.like_users.remove(request.user)
+        # remove : 중개 테이블에 어떤 유저를 지워준다.(좋아요를 하나 누르면 또 다시 누르지 못하도록)
+    else:
+        board.like_users.add(request.user)
+        # 조건에 맞지 않으면 중개 테이블에 어떤 유저를 넣어준다.
+    return redirect('boards:index')

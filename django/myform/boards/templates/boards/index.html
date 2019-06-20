@@ -7,7 +7,9 @@
         <p><b>작성자: {{ board.user }}</b></p>
         <p>번호: {{ board.pk }}</p>
         <p>제목: {{ board.title }}</p>
-        <a href="{% url 'boards:detail' board.pk %}">[상세]</a><hr>
+        <a href="{% url 'boards:detail' board.pk %}">[상세]</a>
+        {% include 'boards/_board.html' %}
+        <hr>
     {% endfor %}
     <hr>
     {% if user.is_authenticated %}
