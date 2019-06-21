@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_POST
 from .models import Board, Comment
@@ -35,9 +36,10 @@ def detail(request, board_pk):
     # board = Board.objects.get(pk=board_pk)
     board = get_object_or_404(Board, pk=board_pk)
     # board_pk에 해당하는 글이 있으면 띄우고 아니면 404에러를 띄워
+    person = get_object_or_404(get_user_model(), pk=board.user.pk)
     comments = board.comment_set.all() # 게시판에 달린 모든 글을 가져옴.
     comment_form = CommentForm() # 댓글 적는 곳
-    context = {'board':board, 'comments':comments, 'comment_form':comment_form}
+    context = {'board':board, 'comments':comments, 'comment_form':comment_form, 'person':person}
     return render(request, 'boards/detail.html', context)
 
 
@@ -110,3 +112,13 @@ def like(request, board_pk):
         board.like_users.add(request.user)
         # 조건에 맞지 않으면 중개 테이블에 어떤 유저를 넣어준다.
     return redirect('boards:index')
+
+
+@login_required
+def follow(request, board_pk, user_pk):
+    person = get_object_or_404(get_user_model(), pk=user_pk)
+    if request.user in person.followers.all():
+        person.followers.remove(request.user)
+    else:
+        person.followers.add(request.user)
+    return redirect('boards:detail', board_pk)
