@@ -1,0 +1,37 @@
+{% load bootstrap4 %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://kit.fontawesome.com/eb4e6c57f5.js"></script>
+    {% bootstrap_css %}
+    <title>BS Form</title>
+</head>
+<body>
+    <div class="container">
+        {% if user.is_authenticated %}
+            <h1>Hi, {{ user.username }}</h1>
+            <hr>
+            <a href="{% url 'accounts:edit' %}">[Edit User]</a><br>
+            <a href="{% url 'accounts:change_password' %}">[Edit Password]</a>
+            <form action="{% url 'accounts:logout' %}" method="POST">
+                {% csrf_token %}
+                <input type="submit" value="Log Out">
+            </form>
+            <form action="{% url 'accounts:delete' %}" method="POST">
+                {% csrf_token %}
+                <input type="submit" value="Withdrawal">
+            </form>
+        {% else %}
+            <a href="{% url 'accounts:login' %}">[Log In]</a>
+            <a href="{% url 'accounts:signup' %}">[Sign Up]</a>
+        {% endif %}
+        <hr>
+        {% block body %}
+        {% endblock %}
+    </div>
+</body>
+</html>

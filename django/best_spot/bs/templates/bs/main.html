@@ -1,0 +1,13 @@
+{% extends 'bs/base.html' %}
+
+{% block body %}
+<h1 class="text-center"><font size="10" face="돋움">Best Spot</font></h1>
+
+    <center><i class="fa fa-map-marker fa-10x" aria-hidden="true" style="color:navy"></i></center>
+
+<form action="{% url 'bs:history' %}" method="GET">
+    {% csrf_token %}
+    <center><input type="submit" value="START"></center>
+</form>
+
+{% endblock %}

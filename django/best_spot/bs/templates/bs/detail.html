@@ -1,0 +1,28 @@
+{% extends 'bs/base.html' %}
+{% block body %}
+<h1 class="text-center">DETAIL</h1>
+<hr>
+<h2>{{ history.pk }}번 모임</h2>
+<p>년도: {{ history.year }}</p>
+<p>월: {{ history.month }}</p>
+<p>일: {{ history.day }}</p>
+<p>시간: {{ history.hour }}</p>
+<p>분: {{ history.min }}</p>
+<p>모임명: {{ history.title }}</p>
+<p>인원수: {{ history.member }}</p>
+<p>가중치: {{ history.weight }}</p>
+<p>출발지: {{ history.start }}</p>
+<p>목적지: {{ history.goal }}</p>
+
+<hr>
+
+<hr>
+{% if user == history.user %}
+    <a href="{% url 'bs:update' history.pk %}">[수정]</a>
+    <form action="{% url 'bs:delete' history.pk %}" method="POST">
+        {% csrf_token %}
+        <input type="submit" value="삭제">
+    </form>
+{% endif %}
+<a href="{% url 'bs:history' %}">[목록]</a>
+{% endblock %}

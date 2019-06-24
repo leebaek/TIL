@@ -1,0 +1,17 @@
+{% extends 'bs/base.html' %}
+{% load bootstrap4 %}
+{% load socialaccount %}
+{% block body %}
+
+<h1 class="text-center">Sign In</h1>
+
+<form action="" method="POST">
+    {% csrf_token %}
+    {% bootstrap_form form %}
+
+    {% buttons %}
+        <button type="submit" class="btn btn-primary">Sign In</button>
+    {% endbuttons %}
+</form>
+<a class='btn btn-warning' href="{% provider_login_url 'kakao' method='oauth2' %}">Kakao LogIn</a>
+{% endblock %}

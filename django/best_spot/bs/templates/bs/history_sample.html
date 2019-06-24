@@ -1,0 +1,18 @@
+{% extends 'project01/base.html' %}
+
+{% block body %}
+<h1 class="text-center">History</h1> <!-- 페이지 제목 -->
+<hr>
+{% for i in history %} <!-- for문으로 히스토리 내역 구현 -->
+    <form action="{% url 'project01:calculate' %}" method="POST"> <!-- 정산 페이지로 이동하는 form태그 -->
+        {% csrf_token %}
+        {{ 히스토리 내역 }} <!-- 각 히스토리의 내용이 들어가야 함. -->
+        <input type="submit" id="정산" value="정산" name="정산"> <!-- 각 히스토리의 정산 버튼 -->
+    </form>
+    <hr>
+{% endfor %}
+    <form action="{% url 'project01:new' %}" method="POST"> <!-- 새 약속 잡는 페이지로 이동하는 form태그 -->
+    {% csrf_token %}
+        <input type="submit" name="NEW" value="NEW" id="NEW"> <!-- NEW버튼 -->
+    </form>
+{% endblock %}
