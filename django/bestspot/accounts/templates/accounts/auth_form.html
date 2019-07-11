@@ -1,0 +1,50 @@
+{% extends 'bs/base.html' %}
+{% load static %}
+{% load bootstrap4 %}
+{% block body %}
+
+<link href="https://fonts.googleapis.com/css?family=Noto+Serif+KR:200,300,400,500,600,700,900&display=swap&subset=korean" rel="stylesheet">
+<style>
+      p {
+        font-family: 'Noto Serif KR', serif;
+        font-size: 23px;
+      }
+      p.a {
+        font-weight: 400;
+      }
+      p.b {
+        font-weight: 700;
+      }
+      p.c {
+        font-weight: 800;
+      }
+      p.d {
+        font-weight: bold;
+      }
+</style>
+
+{% if request.resolver_match.url_name == 'signup' %}
+<h1 class="text-center">회원가입</h1>
+{% elif request.resolver_match.url_name == 'edit' %}
+<h1 class="text-center">회원정보변경</h1>
+{% else %}
+<h1 class="text-center">비밀번호변경</h1>
+{% endif %}
+
+<form action="" method="POST">
+    {% csrf_token %}
+    {% bootstrap_form form %}
+
+    {% buttons %}
+        {% if request.resolver_match.url_name == 'signup' %}
+        <button type="submit" class="btn btn-primary">회원가입</button>
+        {% elif request.resolver_match.url_name == 'login' %}
+        <button type="submit" class="btn btn-primary">로그인</button>
+        {% elif request.resolver_match.url_name == 'edit' %}
+        <button type="submit" class="btn btn-primary">회원정보변경</button>
+        {% else %}
+        <button type="submit" class="btn btn-primary">비밀번호변경</button>
+        {% endif %}
+    {% endbuttons %}
+</form>
+{% endblock %}

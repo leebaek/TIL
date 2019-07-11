@@ -1,0 +1,74 @@
+{% extends 'bs/base.html' %}
+
+{% block body %}
+<h1 class="text-center">여기서 보자</h1>
+<hr>
+<script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=xg73rbbnga"></script>
+<div id="map" style="width:100%;height:400px;"></div>
+
+<script>
+    var mapOptions = {
+        center: new naver.maps.LatLng({{ center_lat }}, {{ center_lng }}),
+        zoom: 7
+    };
+    var map = new naver.maps.Map('map', mapOptions);
+    {{dic. }}
+    var x = {{ sort_lat }};
+    var y = {{ sort_lng }};
+
+   function drawNaverMarker(x,y){
+      var marker = new naver.maps.Marker({
+          map: map,
+          position: new naver.maps.LatLng(y, x),
+      });
+   }
+    function drawNaverMarker2(x,y){
+        var marker2 = new naver.maps.Marker({
+            map: map,
+            position: new naver.maps.LatLng(y, x),
+            icon: {
+                path: [
+                    new naver.maps.Point(10, 70), new naver.maps.Point(20, 100), new naver.maps.Point(30, 70),
+                ],
+                style: "closedPath",
+                fillColor: '#ff0000',
+                fillOpacity: 1,
+                strokeColor: '#000000',
+                strokeStyle: 'solid',
+                strokeWeight: 1
+            }
+        });
+
+        var contentString = [
+            '<div class="iw_inner">',
+            '   <h4>1차 매칭 지점</h4>',
+            '</div>'
+        ].join('');
+
+        var infowindow = new naver.maps.InfoWindow({
+            content: contentString
+        });
+
+        infowindow.open(map, marker2);
+    }
+    drawNaverMarker2(y[0],x[0])
+    for(i=1; i<x.length; i++){
+        drawNaverMarker(y[i],x[i])
+    }
+
+
+</script>
+<div>
+    <form action="{% url 'bs:map_2' %}">
+        <fieldset style="float:right; position: relative; left: -50%;">
+            <legend>근접 지하철역</legend>
+            {% for i in sort_name|slice:"1:" %}
+                <label class="checkbox">
+                    <input type="checkbox" name="goal" value="{{ i }}">{{ i }}
+                </label><br>
+            {% endfor %}
+            <input type="submit" value="NEXT">
+        </fieldset>
+    </form>
+</div>
+{% endblock %}

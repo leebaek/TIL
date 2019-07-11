@@ -53,7 +53,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'best_spot.urls'
+ROOT_URLCONF = 'bestspot.urls'
 
 TEMPLATES = [
     {
@@ -71,7 +71,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'best_spot.wsgi.application'
+WSGI_APPLICATION = 'bestspot.wsgi.application'
 
 
 # Database
@@ -124,3 +124,5 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 AUTH_USER_MODEL = 'accounts.User'
+
+IMPORT_EXPORT_USE_TRANSACTIONS = True

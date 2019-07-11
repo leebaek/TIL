@@ -1,0 +1,36 @@
+{% extends 'bs/base.html' %}
+{% block body %}
+<link href="https://fonts.googleapis.com/css?family=Noto+Serif+KR:200,300,400,500,600,700,900&display=swap&subset=korean" rel="stylesheet">
+<style>
+      p {
+        font-family: 'Noto Serif KR', serif;
+        font-size: 23px;
+      }
+      p.a {
+        font-weight: 400;
+      }
+      p.b {
+        font-weight: 700;
+      }
+      p.c {
+        font-weight: 800;
+      }
+      p.d {
+        font-weight: bold;
+      }
+</style>
+<h1 class="text-center"><p class="d"><font size="50px;">DETAIL</font></p></h1>
+<hr>
+<h2><p class="d"><b>모임명: {{ history.title }}</b></p></h2>
+<p>일정: {{ history.year }}년 {{ history.month }}월 {{ history.day }}일 {{ history.hour }}시 {{ history.min }}분</p>
+
+<p>인원수: {{ history.member }}</p>
+<p>목적지: {{ history.goal }}</p>
+
+<hr>
+
+<a href="{% url 'bs:calculate' history.pk %}" class="btn btn-primary">정산</a>
+<a href="{% url 'bs:update' history.pk %}" class="btn btn-primary">수정</a>
+<a href="{% url 'bs:intro' %}" class="btn btn-primary">목록</a>
+<a href="{% url 'bs:delete' history.pk %}" class="btn btn-danger">삭제</a>
+{% endblock %}

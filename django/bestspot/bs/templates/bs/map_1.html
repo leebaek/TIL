@@ -1,0 +1,47 @@
+{% extends 'bs/base.html' %}
+{% block body %}
+
+    <link href="https://fonts.googleapis.com/css?family=Noto+Serif+KR:200,300,400,500,600,700,900&display=swap&subset=korean" rel="stylesheet">
+<style>
+      p {
+        font-family: 'Noto Serif KR', serif;
+        font-size: 23px;
+      }
+      p.a {
+        font-weight: 400;
+      }
+      p.b {
+        font-weight: 700;
+      }
+      p.c {
+        font-weight: 800;
+      }
+      p.d {
+        font-weight: bold;
+      }
+</style>
+
+
+<h1 class="text-center"><p class="a"><font size="50px;">어디서?</font></p></h1>
+<br>
+<fieldset>
+<legend><p class="a"><font size="6px;">중간지점찾기</font></p></legend>
+    <form action="{% url 'bs:map_1' %}" method="POST">
+        {% csrf_token %}
+        {% for i in counter %}
+            <div class="text-center">
+                <label for="start"><p class="a"><font size="4px;">{{ i }}번 출발지: </font></p></label>
+                <input type="text" name="start[]" id="start" size="40">
+                <label for="weight"><p class="a"><font size="4px;">{{ i }}번 가중치: </font></p></label>
+                <input type="number" name="weight[]" id="weight" min="1" max="5">
+            </div>
+        {% endfor %}
+        <p class="a"><input type="submit" value="입력" style="float:right;" class="btn btn-primary"></p>
+    </form>
+</fieldset>
+<a href="{% url 'bs:new' %}" class="btn btn-dark">뒤로가기</a>
+<a href="{% url 'bs:intro' %}" class="btn btn-dark">작성취소</a>
+<hr>
+{% endblock %}
+
+

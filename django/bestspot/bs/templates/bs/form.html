@@ -2,20 +2,23 @@
 {% load bootstrap4 %}
 {% block body %}
 
+
 {% if request.resolver_match.url_name == 'new' %}
 <h1 class="text-center">NEW</h1>
 {% else %}
 <h1 class="text-center">UPDATE</h1>
 {% endif %}
 <hr>
+
 <form action="" method="POST">
     {% csrf_token %}
     {% bootstrap_form form layout='horizontal' %}
-    {% bootstrap_button "모임결성" button_type='submit' button_class='btn-danger' %}
+    {% bootstrap_button "모임결성" button_type='submit' button_class='btn-outline-dark' %}
 </form>
+
 {% if request.resolver_match.url_name == 'new' %}
-<a href="{% url 'bs:history' %}" class="btn btn-primary">목록</a>
+<a href="{% url 'bs:intro' %}" class="btn btn-dark">작성취소</a>
 {% else %}
-<a href="{% url 'bs:detail' history.pk %}" class="btn btn-success">모임 상세보기</a>
+<a href="{% url 'bs:detail' history.pk %}" class="btn btn-dark">수정취소</a>
 {% endif %}
-{% endblock%}
+{% endblock %}

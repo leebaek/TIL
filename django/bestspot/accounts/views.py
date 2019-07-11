@@ -14,7 +14,7 @@ def signup(request):
         if form.is_valid():
             user = form.save()
             auth_login(request, user)
-            return redirect('bs:history')
+            return redirect('bs:intro')
     else:
         form = UserCustomCreationForm()
     context = {'form':form}
@@ -22,12 +22,12 @@ def signup(request):
 
 def login(request):
     if request.user.is_authenticated:
-        return redirect('bs:history')
+        return redirect('bs:intro')
     if request.method == 'POST':
         form = AuthenticationForm(request, request.POST)
         if form.is_valid():
             auth_login(request, form.get_user())
-            return redirect(request.GET.get('next') or 'bs:history')
+            return redirect(request.GET.get('next') or 'bs:intro')
     else:
         form = AuthenticationForm()
     context = {'form':form}
@@ -36,23 +36,23 @@ def login(request):
 def logout(request):
     if request.method == 'POST':
         auth_logout(request)
-        return redirect('bs:history')
+        return redirect('bs:intro')
     else:
-        return redirect('bs:history')
+        return redirect('bs:intro')
 
 def delete(request):
     if request.method == 'POST':
         request.user.delete()
-        return redirect('bs:history')
+        return redirect('bs:intro')
     else:
-        return redirect('bs:history')
+        return redirect('bs:intro')
 
 def edit(request):
     if request.method == 'POST':
         form = UserCustomChangeForm(request.POST, instance=request.user)
         if form.is_valid():
             form.save()
-            return redirect('bs:history')
+            return redirect('bs:intro')
     else:
         form = UserCustomChangeForm(instance=request.user)
     context = {'form':form}
@@ -64,7 +64,7 @@ def change_password(request):
         if form.is_valid():
             user = form.save()
             update_session_auth_hash(request, user)
-            return redirect('bs:history')
+            return redirect('bs:intro')
     else:
         form = PasswordChangeForm(request.user)
     context = {'form':form}

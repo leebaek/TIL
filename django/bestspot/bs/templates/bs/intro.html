@@ -1,0 +1,38 @@
+{% extends 'bs/base.html' %}
+{% load bootstrap4 %}
+{% load socialaccount %}
+{% block body %}
+
+<link href="https://fonts.googleapis.com/css?family=Noto+Serif+KR:200,300,400,500,600,700,900&display=swap&subset=korean" rel="stylesheet">
+<style>
+      p {
+        font-family: 'Noto Serif KR', serif;
+        font-size: 23px;
+      }
+      p.a {
+        font-weight: 400;
+      }
+      p.b {
+        font-weight: 700;
+      }
+      p.c {
+        font-weight: 800;
+      }
+      p.d {
+        font-weight: bold;
+      }
+</style>
+    <h1 class="text-center"><p class="d"><font size="50px;">INTRO</font></p></h1>
+    <hr>
+    {% for history in histories %}
+        <p><b>모임명: {{ history.title }}</b></p>
+        <p>일정: {{ history.year }}년 {{ history.month }}월 {{ history.day }}일 {{ history.hour }}시 {{ history.min }}분</p>
+        <a href="{% url 'bs:detail' history.pk %}" class="btn btn-dark btn-sm"><p class="a"><font size="3px;">모임 상세보기</font></p></a>
+        <hr>
+    {% endfor %}
+
+    <a href="{% url 'bs:new' %}" class="btn btn-primary btn-sm"><p class="a"><font size="3px;">새 모임</font></p></a>
+<hr>
+{% endblock %}
+
+

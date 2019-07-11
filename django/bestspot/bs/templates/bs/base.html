@@ -1,0 +1,56 @@
+{% load bootstrap4 %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://kit.fontawesome.com/eb4e6c57f5.js"></script>
+    {% bootstrap_css %}
+    <link href="https://fonts.googleapis.com/css?family=Noto+Serif+KR:200,300,400,500,600,700,900&display=swap&subset=korean" rel="stylesheet">
+<style>
+      p {
+        font-family: 'Noto Serif KR', serif;
+        font-size: 23px;
+      }
+      p.a {
+        font-weight: 400;
+      }
+      p.b {
+        font-weight: 700;
+      }
+      p.c {
+        font-weight: 800;
+      }
+      p.d {
+        font-weight: bold;
+      }
+</style>
+
+    <title>BS Form</title>
+</head>
+<body>
+    <div class="container">
+        {% if user.is_authenticated %}
+            <h1>Hi, {{ user.username }}</h1>
+            <a href="{% url 'accounts:edit' %}" class="btn btn-dark">회원정보변경</a>
+            <a href="{% url 'accounts:change_password' %}" class="btn btn-dark">비밀번호변경</a>
+            <form action="{% url 'accounts:logout' %}" method="POST" style="width:95px;float:left;" data-toggle="modal">
+                {% csrf_token %}
+                <input type="submit" value="로그아웃" class="btn btn-dark">
+            </form>
+            <form action="{% url 'accounts:delete' %}" method="POST" style="width:95px;float:left;" data-toggle="modal">
+                {% csrf_token %}
+                <input type="submit" value="회원탈퇴" class="btn btn-dark">
+            </form>
+        {% else %}
+            <a href="{% url 'accounts:login' %}" class="btn btn-dark">로그인</a>
+            <a href="{% url 'accounts:signup' %}" class="btn btn-dark">회원가입</a>
+        {% endif %}
+        <hr>
+        {% block body %}
+        {% endblock %}
+    </div>
+</body>
+</html>
